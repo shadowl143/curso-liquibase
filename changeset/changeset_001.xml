@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+       <!-- esta es la primer tabla de ejemplo -->
+       <changeSet id="15042026-1" author="julian.lara">
+            <createTable tableName="Usuarios">
+                <column name="Id" type="int" autoIncrement="true">
+                    <constraints primaryKey="true" primaryKeyName="Usuario_PK"/>
+                </column>
+
+                <column name="Nombre" type="varchar(150)">
+                    <constraints nullable="false"/>
+                </column>
+                
+                <column name="Email" type="varchar(250)">
+                    <constraints nullable="false" unique="true" uniqueConstraintName="UQ_EMAIL_USUARIO"/>
+                </column>
+            </createTable>
+       </changeSet>
+</databaseChangeLog>
