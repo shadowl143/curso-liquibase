@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+ 
+       <!-- esta es la primer tabla de ejemplo -->
+       <changeSet id="16042026-6" author="julian.lara">
+            <createTable tableName="Menu">
+                <column name="Pk_Id" type="int" autoIncrement="true">
+                    <constraints primaryKey="true" primaryKeyName="Usuario_PK"/>
+                </column>
+
+                <column name="Nombre" type="varchar(150)">
+                    <constraints nullable="false"/>
+                </column>
+                
+                <column name="Ruta_Padre" type="varchar(250)">
+                    <constraints nullable="false" unique="true" uniqueConstraintName="UQ_RP_Menu"/>
+                </column>
+            </createTable>
+       </changeSet>
+       
+       <!-- esta es la primer tabla de ejemplo -->
+       <changeSet id="16042026-7" author="julian.lara">
+             <createTable tableName="Paginas">
+                <column name="Pk_Id" type="int" autoIncrement="true">
+                    <constraints primaryKey="true" primaryKeyName="Usuario_PK"/>
+                </column>
+
+                <column name="Nombre" type="varchar(150)">
+                    <constraints nullable="false"/>
+                </column>
+                
+                <column name="Ruta_Hija" type="varchar(250)">
+                    <constraints nullable="false" unique="true" uniqueConstraintName="UQ_RP_Menu"/>
+                </column>
+                
+                <column name="FK_Menu_Id" type="int">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+       </changeSet>
+
+       
+    <changeSet id="16042026-8" author="julian.lara">
+        <addForeignKeyConstraint
+            baseTableName="Paginas"
+            baseColumnNames="FK_Menu_Id"
+            constraintName="FK_Pagina_Menu"
+            referencedTableName="Menu"
+            referencedColumnNames="Pk_Id" />
+            <rollback>
+                <dropForeignKeyConstraint
+                baseTableName="Paginas"
+                baseColumnNames="FK_Menu_Id"
+                constraintName="FK_Pagina_Menu"
+                referencedTableName="Menu"
+                referencedColumnNames="Pk_Id" />
+            </rollback>
+    </changeSet>
+    <changeSet id="16042026-9" author="julian.lara">
+        <insert tableName="Usuarios">
+            <column name="Nombre" value="${nombre_usuario}"/>
+            <column name="Email" value="${correo_usuario}"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

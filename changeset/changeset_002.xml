@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+       <!-- Carga incial de usuarios. -->
+       <changeSet id="16042026-2" author="julian.lara">
+          <!--<sql> SET IDENTITY_INSERT NombreTabla ON; </sql> -->
+           <insert tableName="Usuarios">
+                <column name="Id" valueNumeric="1"/>
+                <column name="Nombre" value="Julián"/>
+                <column name="Email" value="julian.lara@axity.com"/>
+           </insert>
+           <insert tableName="Usuarios">
+                <column name="Id" valueNumeric="2"/>
+                <column name="Nombre" value="Arturo"/>
+                <column name="Email" value="arturo.lara@axity.com"/>
+           </insert>
+          <!--<sql> SET IDENTITY_INSERT NombreTabla OFF; </sql> -->
+       </changeSet>
+
+       <!-- Carga incial de roles. -->
+       <changeSet id="16042026-3" author="julian.lara">
+           <insert tableName="Roles">
+                <column name="Nombre" value="Admin"/>
+                <column name="Estado" valueBoolean="true"/>
+           </insert>
+       </changeSet>
+
+       <!-- Actualizar dato erroneo. -->
+       <changeSet id="16042026-4" author="julian.lara">
+           <sql>
+                update Roles set Estado=1 where Id = 1;
+           </sql>
+       </changeSet>
+
+       <!-- Actualizar dato Nombre rol. -->
+       <changeSet id="16042026-5" author="julian.lara">
+           <update tableName="Roles">
+               <column name="Nombre" value="Administrador"/>
+               <where>Id = 1</where>
+           </update>
+       </changeSet>
+</databaseChangeLog>

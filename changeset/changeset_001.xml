@@ -22,4 +22,21 @@
                 </column>
             </createTable>
        </changeSet>
+       
+       <!-- esta es la primer tabla de ejemplo -->
+       <changeSet id="16042026-1" author="julian.lara">
+            <createTable tableName="Roles">
+                <column name="Id" type="int" autoIncrement="true">
+                    <constraints primaryKey="true" primaryKeyName="Usuario_PK"/>
+                </column>
+
+                <column name="Nombre" type="varchar(150)">
+                    <constraints nullable="false" unique="true" uniqueConstraintName="UQ_NOMBRE_ROL"/>
+                </column>
+                
+                <column name="Estado" type="bit" defaultValue="1">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+       </changeSet>
 </databaseChangeLog>
