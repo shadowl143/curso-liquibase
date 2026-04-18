@@ -1,4 +1,4 @@
-# Curso liquiebase.
+# Curso liquibase.
 
 Es necesario habilitar los puertos para que se pueda conectar liquidbase 
 win + R
